@@ -2,6 +2,7 @@ import React from "react";
 import Card from "./card";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { getWeather } from "../../api";
+import WeatherIcon from "../WeatherIcon";
 
 type Props = {};
 
@@ -23,11 +24,7 @@ export default function DailyForecast({}: Props) {
                         })}
                     </p>
 
-                    <img
-                        className="size-10"
-                        src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                        alt=""
-                    />
+                    <WeatherIcon icon={day.weather[0].icon} />
                     <p>{Math.round(day.temp.day)}°C</p>
                     <p className="text-gray-500/75">
                         {Math.round(day.temp.min)}°C
@@ -37,8 +34,6 @@ export default function DailyForecast({}: Props) {
                     </p>
                 </div>
             ))}
-
-            {/* {JSON.stringify(data?.daily).slice(0, 100)} */}
         </Card>
     );
 }

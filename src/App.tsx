@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getWeather } from "./api";
 import Card from "./components/cards/card";
 import DailyForecast from "./components/cards/DailyForecast";
+import HourlyForecast from "./components/cards/HourlyForecast";
+import CurrentWeather from "./components/cards/CurrentWeather";
 
 function App() {
     // useQuery works with a queryKey and a query function, the return from api.ts is the data
@@ -17,12 +19,8 @@ function App() {
 
     return (
         <div className="flex flex-col gap-8">
-            <Card title="Current Weather">
-                {JSON.stringify(data?.current).slice(0, 100)}
-            </Card>
-            <Card title="Hourly Forecast (48 Hours)">
-                {JSON.stringify(data?.hourly).slice(0, 100)}
-            </Card>
+            <CurrentWeather />
+            <HourlyForecast />
             <DailyForecast />
         </div>
     );
